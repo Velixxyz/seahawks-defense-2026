@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Seahawks Defense Data Explorer</title>
+<meta name="description" content="An interactive explorer for the 2026 Seattle Seahawks defense: the NFL's #1 yardage defense through Week 10 — game log, player leaders, advanced metrics (DVOA, EPA, pressure rate) and NFC West standings. All data sourced and linked.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">POIDH BOUNTY #1569 · NFL 2026 · DATA AS OF NOV 26, 2026</p>
+    <h1>2026 Seahawks Defense<br><span>Data Explorer</span></h1>
+    <p class="lede">Seattle owns the NFL's stingiest yardage defense through Week 10 — and the numbers are even better than the reputation. Explore every game, every playmaker, and the advanced metrics behind the wall.</p>
+    <div class="badges">
+      <span class="badge">Record <b>6–4</b></span>
+      <span class="badge">10 games · bye Week 11</span>
+      <span class="badge">3rd · NFC West</span>
+      <span class="badge">Week 12 @ SF — Nov 29</span>
+    </div>
+    <nav class="toc">
+      <a href="#overview">Overview</a>
+      <a href="#games">Game Log</a>
+      <a href="#players">Players</a>
+      <a href="#advanced">Advanced</a>
+      <a href="#standings">Standings</a>
+      <a href="#sources">Sources</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="overview">
+    <h2>The headline numbers</h2>
+    <p class="sec-sub">Per-game averages, 10 games (Weeks 1–10). Rank out of 32 NFL teams.</p>
+    <div class="cards" id="statCards"></div>
+
+    <div class="insights">
+      <article class="insight good">
+        <h3>🛡 The wall is real</h3>
+        <p>236.1 total yards allowed per game — <b>#1 in the NFL</b> — and just 4.00 yards per play, also #1. Opponents average 15.1 first downs per game, fewest in the league. This is not a bend-don't-break unit; it barely bends.</p>
+      </article>
+      <article class="insight good">
+        <h3>✈️ No-fly zone</h3>
+        <p>149.4 net passing yards allowed per game (#1) with an opponent passer rating of 76.7 (#1). Seattle rushes four, rarely blitzes (24.1%, 25th), and still generates pressure on 30.2% of dropbacks (#2) — and when it does blitz, opponents manage −0.25 EPA per dropback (2nd).</p>
+      </article>
+      <article class="insight bad">
+        <h3>⚠️ The crack in the wall</h3>
+        <p>Once opponents reach the red zone, the magic fades: 69.6% of trips end in touchdowns (#29), and on 4th down opponents convert 85.7% (31st). The defense dominates between the 20s — then gives it back inside them.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="games">
+    <h2>Game log — every game, every yard</h2>
+    <p class="sec-sub">Click a metric to redraw the chart. Click a column header to sort the table. Takeaways = turnovers forced.</p>
+    <div class="toggle" id="chartToggle">
+      <button data-metric="pts" class="active">Points allowed</button>
+      <button data-metric="yds">Yards allowed</button>
+      <button data-metric="to">Takeaways</button>
+    </div>
+    <div class="chart" id="gameChart"></div>
+    <p class="chart-note" id="chartNote"></p>
+    <div class="table-scroll">
+      <table id="gameTable">
+        <thead>
+          <tr>
+            <th data-sort="wk">Wk</th>
+            <th data-sort="date">Date</th>
+            <th data-sort="opp">Opponent</th>
+            <th data-sort="ha">H/A</th>
+            <th data-sort="result">Result</th>
+            <th data-sort="score">Score</th>
+            <th data-sort="pts">Pts allowed</th>
+            <th data-sort="yds">Yds allowed</th>
+            <th data-sort="pass">Pass yds</th>
+            <th data-sort="rush">Rush yds</th>
+            <th data-sort="to">Takeaways</th>
+          </tr>
+        </thead>
+        <tbody id="gameBody"></tbody>
+      </table>
+    </div>
+    <p class="fine">Best defensive game: 3 points allowed (Week 7 vs KC, Week 9 vs ARI) and 151 yards allowed (Week 2 @ ARI). Worst: 34 points and 363 yards (Week 8 vs CHI). Four takeaways in Week 4 vs LAC. Totals check out: 175 pts · 2,361 yds · 1,494 net pass yds · 867 rush yds · 13 takeaways.</p>
+  </section>
+
+  <section id="players">
+    <h2>Player leaders</h2>
+    <p class="sec-sub">Top defenders through Week 10. Switch tabs to compare the unit's playmakers.</p>
+    <div class="toggle" id="playerTabs">
+      <button data-tab="tackles" class="active">Tackles</button>
+      <button data-tab="sacks">Sacks</button>
+      <button data-tab="ints">Interceptions</button>
+      <button data-tab="ff">Forced fumbles</button>
+    </div>
+    <div id="playerBars"></div>
+    <p class="fine" id="playerNote"></p>
+  </section>
+
+  <section id="advanced">
+    <h2>Advanced metrics</h2>
+    <p class="sec-sub">Beyond the box score — efficiency metrics that explain <em>why</em> the defense is elite. Rank out of 32 teams unless noted.</p>
+    <div class="cards" id="advCards"></div>
+    <p class="fine">DVOA (FTN, Week 11): −23.6% is the best defensive DVOA in the league — and it is the second straight year Seattle leads the NFL in defensive DVOA (2025: −24.0%). EPA figures: StatChasers. Pressure rate: Jets X-Factor (Nov 25) + Daily Fox News Week 12 preview. Blitz rate uses the "5+ rushers" definition (StatChasers); other charting sources range 22.6–25.4%.</p>
+  </section>
+
+  <section id="standings">
+    <h2>NFC West standings</h2>
+    <p class="sec-sub">As of Nov 26, 2026. Seattle sits third — two games behind San Francisco, one behind the Rams.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>#</th><th>Team</th><th>W–L</th><th>PCT</th><th>PF</th><th>PA</th><th>DIV</th><th>Streak</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>San Francisco 49ers</td><td>9–1</td><td>.900</td><td>316</td><td>206</td><td>3–0</td><td>W3</td></tr>
+          <tr><td>2</td><td>Los Angeles Rams</td><td>7–4</td><td>.636</td><td>274</td><td>200</td><td>1–2</td><td>W5</td></tr>
+          <tr class="hl"><td>3</td><td><b>Seattle Seahawks</b></td><td><b>6–4</b></td><td><b>.600</b></td><td><b>223</b></td><td><b>175</b></td><td><b>2–1</b></td><td><b>W2</b></td></tr>
+          <tr><td>4</td><td>Arizona Cardinals</td><td>3–8</td><td>.273</td><td>191</td><td>323</td><td>1–4</td><td>L3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine">Remaining schedule: Week 12 @ SF (Nov 29) · Week 13 vs DAL (Dec 7) · Week 14 vs NYG (Dec 13) · Week 15 @ PHI (Dec 19) · Week 16 vs LAR (Dec 25) · Week 17 @ CAR (Jan 3) · Week 18 @ LAR (Jan 10). Head coach: Mike Macdonald (defensive play-caller). Defensive coordinator: Aden Durde.</p>
+  </section>
+
+  <section id="sources">
+    <h2>Sources &amp; methodology</h2>
+    <p class="sec-sub">Every number on this page comes from a live source read on Nov 26, 2026, and is cross-checked against at least one other source where possible. Numbers verified by a single source are marked †.</p>
+    <ul class="sources">
+      <li><a href="https://www.pro-football-reference.com/teams/sea/2026.htm">Pro-Football-Reference — 2026 Seattle Seahawks</a> (team stats, defense table)</li>
+      <li><a href="https://www.pro-football-reference.com/years/2026/opp.htm">Pro-Football-Reference — 2026 NFL Opposition &amp; Defensive Statistics</a></li>
+      <li><a href="https://www.pro-football-reference.com/teams/sea/2026/gamelog/">Pro-Football-Reference — 2026 SEA gamelog</a></li>
+      <li><a href="https://statchasers.com/nfl/teams/seattle-seahawks/stats/">StatChasers — Seattle Seahawks Stats 2026</a> (EPA, success rate, blitz rate)</li>
+      <li><a href="https://www.statmuse.com/nfl/ask/seattle-seahawks-defense-stats">StatMuse — Seattle Seahawks Defense Stats</a></li>
+      <li><a href="https://www.covers.com/sport/football/nfl/statistics/team-defense/2026-2027">Covers — NFL Team Defense Stats 2026–2027</a></li>
+      <li><a href="https://ftnfantasy.com/nfl/week-11-dvoa-frisco-kids">FTN Fantasy — Week 11 DVOA</a> (defensive DVOA −23.6%, #1)</li>
+      <li><a href="https://jetsxfactor.com/2026/11/25/new-york-jets-defense-stink-legit-pass-rushing/">Jets X-Factor — Jets defense analysis (Nov 25, 2026)</a> (pressure rate, QB knockdown %)</li>
+      <li><a href="https://www.espn.ph/nfl/team/stats/_/name/SEA/seasontype/3/sort/totalTouchdowns">ESPN — Seattle Seahawks 2026 player stats</a></li>
+      <li><a href="https://www.footballdb.com/teams/nfl/seattle-seahawks/stat-splits/defense/summary">The Football Database — 2026 SEA Defense Splits</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Template:2026_NFC_West_standings">Wikipedia — 2026 NFC West standings</a></li>
+      <li><a href="https://dailyfoxnews.com/news/29034/where-the-seahawks-elite-defense-has-fallen-off-from-2025">Daily Fox News / SB Nation — Where the Seahawks' elite defense has fallen off from 2025</a></li>
+      <li><a href="https://dailyfoxnews.com/news/28779/how-the-seahawks-defense-plays-better-vs-49ers-in-week-12">Daily Fox News — How the Seahawks' Defense Plays Better vs. 49ers in Week 12</a></li>
+      <li><a href="https://www.edgehalla.com/nfl/teams/seattle-seahawks/defense">Edgehalla — Seattle Seahawks Defense Profile 2026</a></li>
+      <li><a href="https://nypost.com/2026/11/13/sports/raiders-fernando-mendoza-faces-big-test-against-seahawks-defense/">NY Post — Raiders vs Seahawks defense (Nov 13, 2026)</a> (Next Gen Stats blitz context)</li>
+    </ul>
+    <p class="fine"><b>Methodology.</b> "Passing yards allowed" is <b>net</b> (after sack yardage), the PFR/StatChasers convention; gross passing yards allowed are 166.2 per game. Game-log columns sum exactly to the season totals (175 pts, 2,361 yds, 1,494 pass, 867 rush, 13 takeaways) and player tables sum to the team totals (27.0 sacks, 8 INT, 6 FF, 5 FR). Known discrepancies: red-zone trips are 23 (PFR, 69.6%) vs 24 (StatChasers, 66.7%) — 16 TDs in both; this page uses PFR. Blitz-rate definitions differ across charting sources (22.6–25.4%); this page uses StatChasers (5+ rushers). † Single-source figures: defensive TDs (0), 4th-down conversion allowed (85.7%), DVOA splits, QB knockdown % (14.4%), EPA when blitzing, opponent time to throw (2.94s).</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Built for <a href="https://poidh.xyz/base/bounty/1569">POIDH bounty #1569</a> — "Build a 2026 Seahawks defense data explorer". Data as of Nov 26, 2026 (after Week 10, bye Week 11). Week 12 (@ SF, Nov 29) not yet played; numbers will change after it.</p>
+    <p>Open source (MIT). Source code: <a href="https://github.com/Velixxyz/seahawks-defense-2026">github.com/Velixxyz/seahawks-defense-2026</a></p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
